@@ -1,0 +1,27 @@
+
+sdkbox.copy_files(['app'], PLUGIN_PATH, ANDROID_STUDIO_PROJECT_DIR)
+#sdkbox.copy_files(['ios'], PLUGIN_PATH, IOS_PROJECT_DIR)
+sdkbox.copy_files(['Classes/CloudMessaging.cpp', 'Classes/CloudMessaging.hpp'], PLUGIN_PATH, COCOS_CLASSES_DIR)
+sdkbox.copy_files(['ios/firebase_messaging.framework'], PLUGIN_PATH, IOS_PROJECT_DIR)
+
+sdkbox.android_add_static_libraries(['messaging'])
+sdkbox.android_add_calls(['import-module, ./cloudmessaging'])
+sdkbar.gradle_dependencies(["implementation 'com.google.firebase:firebase-messaging:17.3.4'", "implementation 'com.google.firebase.messaging.cpp:firebase_messaging_cpp@aar'"])
+
+sdkbox.xcode_add_sources(['CloudMessaging.cpp'])
+sdkbox.xcode_add_frameworks(['firebase_messaging.framework'])
+
+sdkbar.appDelegateInject({
+    'marker': SDKBOX_PACKAGE_NAME,
+    'android': {
+         'include': 'CloudMessaging.hpp',
+         'function': 'register_all_cloudmessaging_framework'
+    },
+    'ios': {
+         'include': 'CloudMessaging.hpp',
+         'function': 'register_all_cloudmessaging_framework'
+    }
+})
+
+sdkbox.android_add_sources(['../../Classes/CloudMessaging.cpp'])
+
