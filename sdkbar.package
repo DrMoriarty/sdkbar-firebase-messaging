@@ -6,7 +6,7 @@ sdkbox.copy_files(['ios/firebase_messaging.framework', 'ios/FirebaseMessaging.fr
 
 sdkbox.android_add_static_libraries(['messaging'])
 sdkbox.android_add_calls(['import-module, ./cloudmessaging'])
-sdkbar.gradle_dependencies(["implementation 'com.google.firebase:firebase-messaging:17.3.4'", "implementation 'com.google.firebase.messaging.cpp:firebase_messaging_cpp@aar'"])
+sdkbar.gradle_dependencies(["implementation 'com.google.firebase:firebase-messaging:17.5.0'", "implementation 'com.google.firebase.messaging.cpp:firebase_messaging_cpp@aar'"])
 
 sdkbox.xcode_add_sources(['CloudMessaging.cpp'])
 sdkbox.xcode_add_frameworks(['firebase_messaging.framework', 'FirebaseMessaging.framework'])
